@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MVPConf.CheckIn.Views.MainPage"
              Title="{Binding Title}">
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -17,7 +18,8 @@
             <Label Text="{Binding Sessionname}" />
             <Label Text="{Binding SpeakersName}" />
     </StackLayout>
-        <Button Text="Ler crachá" Command="{Binding ScanCommand}" HorizontalOptions="CenterAndExpand" Grid.Row="2" />>
+
+        <Button Text="Ler crachá" Command="{Binding ScanCommand}" HorizontalOptions="CenterAndExpand" Grid.Row="2" />
     </Grid>
 
 </ContentPage>

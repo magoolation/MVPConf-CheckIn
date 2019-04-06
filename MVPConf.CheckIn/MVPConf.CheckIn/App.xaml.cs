@@ -5,6 +5,7 @@ using MVPConf.CheckIn.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MVPConf.CheckIn.Services;
+using Xamarin.Essentials;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace MVPConf.CheckIn
@@ -24,13 +25,21 @@ namespace MVPConf.CheckIn
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
+            {
+                await NavigationService.NavigateAsync(Pages.INITIALIZE_SEGWAY_PAGE);
+            }
+            else
+            {
+                await NavigationService.NavigateAsync(Pages.MAIN_PAGE);
+            }
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<InitializeSegwayPage, InitializeSegwayPageViewModel>();
 
             containerRegistry.RegisterSingleton<ITextToSpeechService, TextToSpeechService>();
         }
