@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MVPConf.CheckIn.Views.MainPage"
+             Title="{Binding Title}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <Label Text="MVP Conference 2019" FontSize="Large" FontAttributes="Bold" Grid.Row="0" />
+        
+    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Row="1">
+        <Label Text="{Binding TrackName}" />
+            <Label Text="{Binding Sessionname}" />
+            <Label Text="{Binding SpeakersName}" />
+    </StackLayout>
+        <Button Text="Ler crachá" Command="{Binding ScanCommand}" HorizontalOptions="CenterAndExpand" Grid.Row="2" />>
+    </Grid>
+
+</ContentPage>
