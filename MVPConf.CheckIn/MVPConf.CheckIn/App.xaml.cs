@@ -6,6 +6,10 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MVPConf.CheckIn.Services;
 using Xamarin.Essentials;
+using MVPConf.CheckIn.Repositories;
+using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace MVPConf.CheckIn
@@ -42,6 +46,31 @@ namespace MVPConf.CheckIn
             containerRegistry.RegisterForNavigation<InitializeSegwayPage, InitializeSegwayPageViewModel>();
 
             containerRegistry.RegisterSingleton<ITextToSpeechService, TextToSpeechService>();
+
+            containerRegistry.RegisterSingleton<IBackendService, BackendService>();
+            containerRegistry.RegisterSingleton<IAttendeeRepository, AttendeeRepository>();
+            containerRegistry.RegisterSingleton<ISpeakSessionRepository, SpeakSessionRepository>();
+
+            containerRegistry.RegisterInstance(GetClient());
+        }
+
+        private HttpClient GetClient()
+        {
+            var handler = new HttpClientHandler()
+            {
+                UseProxy = true,
+                UseDefaultCredentials = true
+            };
+
+            var client = new HttpClient(handler)
+            {
+                Timeout = TimeSpan.FromMinutes(5),
+                BaseAddress = new Uri(Constants.URL),
+        };
+
+        client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));            
+
+        return client;
         }
     }
 }

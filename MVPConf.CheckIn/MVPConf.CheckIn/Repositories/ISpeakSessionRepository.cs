@@ -2,14 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MVPConf.CheckIn.Repositories
 {
-    interface ISpeakSessionRepository
+    public interface ISpeakSessionRepository
     {
         SpeakSession GetSpeakSessionById(int id);
         IEnumerable<SpeakSession> GetSpeakSessionsByRoom(int roomId);
 
-        void CreateSpeakSession(SpeakSession session);
+        Task Refresh();
     }
 }

@@ -4,9 +4,9 @@ using System.Text;
 
 namespace MVPConf.CheckIn.Models
 {
-    class SpeakSession
+    public class SpeakSession
     {
-        public int Id { get; internal set; }
-        public int RoomId { get; internal set; }
+        public int Id { get; set; }
+        public int RoomId { get; set; }
     }
 }
