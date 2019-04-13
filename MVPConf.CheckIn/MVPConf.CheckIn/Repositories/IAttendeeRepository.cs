@@ -10,7 +10,7 @@ namespace MVPConf.CheckIn.Repositories
     {
         Attendee GetAttendeeByIdAsync(int id);
 
-        void CreateAttendee(Attendee attendee);
+        void RegisterSessionAttendence(Attendee attendee, int speakSessionId);
 
         Task Refresh();
     }

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MVPConf.CheckIn.Views.SettingsPage"
+             Visual="Material">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackLayout HorizontalOptions="FillAndExpand" Grid.Row="0" VerticalOptions="Center">
+            <Label StyleId="{StaticResource Title}" Text="MVP Conference LATAM 2019" />
+            <Label  Text="O maior evento de MVPs da América Latina" />
+            <Label Text="Versão 1.0" />
+        </StackLayout>
+
+        <StackLayout HorizontalOptions="FillAndExpand" Grid.Row="1" VerticalOptions="FillAndExpand">
+            <Button Text="Atualizar cache" Command="{Binding UpdateCommand}" HorizontalOptions="Center" />
+            <Button Text="Concluir" Command="{Binding GoBackCommand}" HorizontalOptions="Center" VerticalOptions="End" />
+        </StackLayout>
+
+        <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" />
+    </Grid>
+  
+</ContentPage>

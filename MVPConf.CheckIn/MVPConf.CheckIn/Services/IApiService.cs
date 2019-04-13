@@ -12,9 +12,7 @@ namespace MVPConf.CheckIn.Services
     interface IApiService
     {
         [Post("/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Nn92d7m-cMhP9ihR_nhexN3g8mpzodH_NrPSC6y8Sgw")]
-        Task<AttendeeResult> GetAttendees(Request request);
-        [Post("/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Nn92d7m-cMhP9ihR_nhexN3g8mpzodH_NrPSC6y8Sgw")]
-        Task<SpeakSessionResult> GetSpeakSessions(Request request);
+        Task<T> GetData<T>(Request request);
     }
 
     class Request
@@ -33,5 +31,11 @@ namespace MVPConf.CheckIn.Services
     {
         [JsonProperty(PropertyName = "value")]
         public SpeakSession[] SpeakSessions { get; set; }
+    }
+
+    public class ScheduleResult
+    {
+        [JsonProperty(PropertyName = "value")]
+        public ScheduledSession[] ScheduledSessions { get; set; }
     }
 }

@@ -10,6 +10,8 @@ using MVPConf.CheckIn.Repositories;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net;
+using Prism.AppModel;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace MVPConf.CheckIn
@@ -29,13 +31,15 @@ namespace MVPConf.CheckIn
         {
             InitializeComponent();
 
-            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
+            var applicationStore = Container.Resolve<IApplicationStore>();
+
+            if (Connectivity.NetworkAccess == NetworkAccess.Internet && !applicationStore.IsDataLoaded())
             {
                 await NavigationService.NavigateAsync(Pages.INITIALIZE_SEGWAY_PAGE);
             }
             else
             {
-                await NavigationService.NavigateAsync(Pages.MAIN_PAGE);
+                await NavigationService.NavigateAsync(Pages.SELECT_ROOM_PAGE);
             }
         }
 
@@ -44,6 +48,7 @@ namespace MVPConf.CheckIn
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<InitializeSegwayPage, InitializeSegwayPageViewModel>();
+            containerRegistry.RegisterForNavigation<SelectRoomPage, SelectRoomPageViewModel>();
 
             containerRegistry.RegisterSingleton<ITextToSpeechService, TextToSpeechService>();
 
@@ -52,6 +57,8 @@ namespace MVPConf.CheckIn
             containerRegistry.RegisterSingleton<ISpeakSessionRepository, SpeakSessionRepository>();
 
             containerRegistry.RegisterInstance(GetClient());
+            containerRegistry.RegisterForNavigation<SelectSessionPage, SelectSessionPageViewModel>();
+            containerRegistry.RegisterForNavigation<SettingsPage, SettingsPageViewModel>();
         }
 
         private HttpClient GetClient()
@@ -61,6 +68,11 @@ namespace MVPConf.CheckIn
                 UseProxy = true,
                 UseDefaultCredentials = true
             };
+
+            if (handler.SupportsAutomaticDecompression)
+            {
+                handler.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+            }
 
             var client = new HttpClient(handler)
             {

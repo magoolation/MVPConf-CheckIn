@@ -6,6 +6,7 @@ using MVPConf.CheckIn.Droid.Services;
 using MVPConf.CheckIn.Services;
 using Prism;
 using Prism.Ioc;
+using Xamarin.Forms;
 using ZXing.Mobile;
 
 namespace MVPConf.CheckIn.Droid
@@ -22,6 +23,7 @@ namespace MVPConf.CheckIn.Droid
 
             MobileBarcodeScanner.Initialize(this.Application);
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            FormsMaterial.Init(this, bundle);
             LoadApplication(new App(new AndroidInitializer()));
         }
 
@@ -37,6 +39,7 @@ namespace MVPConf.CheckIn.Droid
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton<IQRScanService, QRScanService>();
+            containerRegistry.RegisterSingleton<ISoundService, SoundService>();
         }
     }
 }

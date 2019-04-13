@@ -8,7 +8,6 @@ namespace MVPConf.CheckIn.Models
     public class Attendee
     {
         public int Id { get; set; }
-        public int ID { get; set; }
         [JsonProperty(PropertyName = "title")]
         public string Name{ get; set; }
         public string Gender { get; set; }
@@ -26,5 +25,6 @@ namespace MVPConf.CheckIn.Models
         public string Password { get; set; }
         public DateTime Created { get; set; }
         public DateTime Modified { get; set; }
+        public List<double> Sessions { get; set; }
     }
 }

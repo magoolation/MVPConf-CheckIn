@@ -9,5 +9,6 @@ namespace MVPConf.CheckIn.Services
     {
         Task<AttendeeResult> GetAttendees();
     Task<SpeakSessionResult> GetSpeakSessions();
+        Task<ScheduleResult> GetSchedules();
     }
 }

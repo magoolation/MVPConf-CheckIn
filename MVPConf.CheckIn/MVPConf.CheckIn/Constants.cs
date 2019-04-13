@@ -10,5 +10,6 @@ namespace MVPConf.CheckIn
         public const string KEY = "da79c9f4-439c-4979-87cb-adec1dc74019";
         public const string PARTICIPANTES = "Participantes";
         public const string PALESTRAS = "Palestras";
+        public const string AGENDAS = "Agendas";
     }
 }

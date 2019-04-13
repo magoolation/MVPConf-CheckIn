@@ -20,11 +20,11 @@ namespace MVPConf.CheckIn.Services
         {
             try
             {
-                return await Endpoint.GetAttendees(new Request()
+                return await Endpoint.GetData<AttendeeResult>(new Request()
                 {
                     Key = Constants.KEY,
                     Action = Constants.PARTICIPANTES
-                });
+                }).ConfigureAwait(false);
             }
             catch (ApiException ex)
             {
@@ -37,11 +37,28 @@ namespace MVPConf.CheckIn.Services
         {
             try
             {
-                return await Endpoint.GetSpeakSessions(new Request()
+                return await Endpoint.GetData<SpeakSessionResult>(new Request()
                 {
                     Key = Constants.KEY,
                     Action = Constants.PALESTRAS
-                });
+                }).ConfigureAwait(false);
+            }
+            catch (ApiException ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        public async Task<ScheduleResult> GetSchedules()
+        {
+            try
+            {
+                return await Endpoint.GetData<ScheduleResult>(new Request()
+                {
+                    Key = Constants.KEY,
+                    Action = Constants.AGENDAS
+                }).ConfigureAwait(false);
             }
             catch (ApiException ex)
             {

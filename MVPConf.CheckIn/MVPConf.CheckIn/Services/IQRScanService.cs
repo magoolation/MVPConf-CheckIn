@@ -8,5 +8,6 @@ namespace MVPConf.CheckIn.Services
     public interface IQRScanService
     {
         Task<string> Scan();
+        void ScanContinuously(Action<string> onRead, Action onError = null);
     }
 }
