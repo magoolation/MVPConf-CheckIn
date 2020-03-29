@@ -12,8 +12,8 @@ namespace MVPConf.CheckIn.Repositories
 {
     class SpeakSessionRepository : ISpeakSessionRepository
     {
-        private readonly LiteCollection<SpeakSession> collection;
-        private readonly LiteCollection<Room> rooms;
+        private readonly ILiteCollection<SpeakSession> collection;
+        private readonly ILiteCollection<Room> rooms;
         private readonly IBackendService backendService;
 
         public SpeakSessionRepository(IBackendService backendService)

@@ -12,8 +12,8 @@ namespace MVPConf.CheckIn.Repositories
 {
     class AttendeeRepository : IAttendeeRepository
     {
-        private readonly LiteCollection<Attendee> collection;
-        private readonly LiteCollection<SessionAttendee> sessionAttendees;
+        private readonly ILiteCollection<Attendee> collection;
+        private readonly ILiteCollection<SessionAttendee> sessionAttendees;
 
         private readonly IBackendService backendService;
 
